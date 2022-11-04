@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     func downloadFacts() {
         guard let url = URL(string: "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all") else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "No error description")
                 return
@@ -44,11 +44,11 @@ class ViewController: UIViewController {
                 let fact = try JSONDecoder().decode([InterestingFact].self, from: data)
                 DispatchQueue.main.async {
 
-                    self.factLabel.text = getStrings(from: fact).randomElement()
-                    self.activiryIndicator.stopAnimating()
-                    self.factLabel.isHidden = false
+                    self?.factLabel.text = getStrings(from: fact).randomElement()
+                    self?.activiryIndicator.stopAnimating()
+                    self?.factLabel.isHidden = false
                     
-                    self.facts = fact
+                    self?.facts = fact
                 }
             } catch let error {
                 print(error)
