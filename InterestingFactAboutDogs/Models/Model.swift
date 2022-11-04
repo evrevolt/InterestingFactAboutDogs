@@ -14,9 +14,9 @@ struct InterestingFact: Decodable {
 struct Facts: Decodable {
     let facts: [InterestingFact]
     
-    //Переведем один тип данных в другой тип данных
 }
 
+//Переведем один тип данных в другой тип данных
 func getStrings(from: [InterestingFact]) -> [String] {
     var strings = [String]()
     for i in from {
