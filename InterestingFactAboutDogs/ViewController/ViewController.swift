@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var facts: [InterestingFact] = []
+    
     
     @IBOutlet var activiryIndicator: UIActivityIndicatorView!
     @IBOutlet var factLabel: UILabel!
@@ -25,15 +27,12 @@ class ViewController: UIViewController {
 
     @IBAction func nextFactButtonTapped() {
         
+        let result = getStrings(from: facts)
+        factLabel.text = result.randomElement()
         
     }
     
-    private func downloadFacts()  {
-        
-        
-        
-        var facts: [InterestingFact] = []
-        
+    func downloadFacts() {
         guard let url = URL(string: "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all") else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
@@ -41,34 +40,20 @@ class ViewController: UIViewController {
                 return
             }
             
-            
-            
-            
             do {
                 let fact = try JSONDecoder().decode([InterestingFact].self, from: data)
                 DispatchQueue.main.async {
-                    self.factLabel.text = fact.count.formatted()
+
+                    self.factLabel.text = getStrings(from: fact).randomElement()
                     self.activiryIndicator.stopAnimating()
                     self.factLabel.isHidden = false
                     
-                    facts = fact
-                    
+                    self.facts = fact
                 }
             } catch let error {
                 print(error)
             }
-            
         }.resume()
-        
-        var someArray: [String] = []
-        
-        for i in facts {
-            someArray.append(i.fact)
-        }
-        
-//        return [InterestingFact]()
-        
     }
-    
 }
 
