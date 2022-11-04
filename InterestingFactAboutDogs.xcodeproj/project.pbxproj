@@ -14,6 +14,7 @@
 		544D4057291513D0007814A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 544D4056291513D0007814A6 /* Assets.xcassets */; };
 		544D405A291513D0007814A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544D4058291513D0007814A6 /* LaunchScreen.storyboard */; };
 		544D40652915155D007814A6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D40642915155D007814A6 /* Model.swift */; };
+		544D40682915240B007814A6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D40672915240B007814A6 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		544D4059291513D0007814A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		544D405B291513D0007814A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		544D40642915155D007814A6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		544D40672915240B007814A6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				544D406629151561007814A6 /* Models */,
+				544D40692915240E007814A6 /* Network */,
 				544D406229151503007814A6 /* SupportFiles */,
 				544D4061291514FA007814A6 /* ViewController */,
 				544D40632915150E007814A6 /* Storyboards */,
@@ -100,6 +103,14 @@
 				544D40642915155D007814A6 /* Model.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		544D40692915240E007814A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				544D40672915240B007814A6 /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +186,7 @@
 			files = (
 				544D4052291513CE007814A6 /* ViewController.swift in Sources */,
 				544D404E291513CE007814A6 /* AppDelegate.swift in Sources */,
+				544D40682915240B007814A6 /* NetworkManager.swift in Sources */,
 				544D4050291513CE007814A6 /* SceneDelegate.swift in Sources */,
 				544D40652915155D007814A6 /* Model.swift in Sources */,
 			);

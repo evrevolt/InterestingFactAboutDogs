@@ -34,18 +34,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jBd-AC-sNh">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Is0-gn-Q4G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="14E-IN-h7P"/>
                             <constraint firstItem="RcJ-gV-eys" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="32d-sZ-K8X"/>
+                            <constraint firstItem="jBd-AC-sNh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="51W-6B-nzl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Is0-gn-Q4G" secondAttribute="trailing" constant="40" id="6Tj-ka-Mtv"/>
                             <constraint firstItem="RcJ-gV-eys" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="OSI-rJ-Oqo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Is0-gn-Q4G" secondAttribute="bottom" multiplier="1.3" id="cwW-CT-cpb"/>
+                            <constraint firstItem="jBd-AC-sNh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iG5-2u-Lkv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activiryIndicator" destination="jBd-AC-sNh" id="EVh-qp-db8"/>
                         <outlet property="factLabel" destination="RcJ-gV-eys" id="1kK-XP-CfQ"/>
                     </connections>
                 </viewController>

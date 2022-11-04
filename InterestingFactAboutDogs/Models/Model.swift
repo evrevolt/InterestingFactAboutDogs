@@ -13,4 +13,11 @@ struct InterestingFact: Decodable {
 
 struct Facts: Decodable {
     let facts: [InterestingFact]
+    
+//    func getRandomFact(facting: [InterestingFact]) -> String {
+//
+//        facting.fact
+//
+//        return fact.randomElement()
+//    }
 }

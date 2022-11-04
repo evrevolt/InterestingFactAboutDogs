@@ -10,15 +10,29 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    @IBOutlet var activiryIndicator: UIActivityIndicatorView!
     @IBOutlet var factLabel: UILabel!
     
     override func viewDidLoad() {
+        
+        factLabel.isHidden = true
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        activiryIndicator.startAnimating()
+        activiryIndicator.hidesWhenStopped = true
+        
+        downloadFacts()
     }
 
     @IBAction func nextFactButtonTapped() {
         
+        
+    }
+    
+    private func downloadFacts()  {
+        
+        
+        
+        var facts: [InterestingFact] = []
         
         guard let url = URL(string: "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all") else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
@@ -27,16 +41,32 @@ class ViewController: UIViewController {
                 return
             }
             
+            
+            
+            
             do {
                 let fact = try JSONDecoder().decode([InterestingFact].self, from: data)
-                print(fact)
                 DispatchQueue.main.async {
                     self.factLabel.text = fact.count.formatted()
+                    self.activiryIndicator.stopAnimating()
+                    self.factLabel.isHidden = false
+                    
+                    facts = fact
+                    
                 }
             } catch let error {
                 print(error)
             }
+            
         }.resume()
+        
+        var someArray: [String] = []
+        
+        for i in facts {
+            someArray.append(i.fact)
+        }
+        
+//        return [InterestingFact]()
         
     }
     
