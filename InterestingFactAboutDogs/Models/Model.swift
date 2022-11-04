@@ -7,20 +7,11 @@
 
 import Foundation
 
-struct InterestingFact: Decodable {
+struct FactAboutDogs: Decodable {
     let fact: String
 }
 
 struct Facts: Decodable {
-    let facts: [InterestingFact]
+    let facts: [FactAboutDogs]
     
-}
-
-//Переведем один тип данных в другой тип данных
-func getStrings(from: [InterestingFact]) -> [String] {
-    var strings = [String]()
-    for i in from {
-        strings.append(i.fact)
-    }
-    return strings
 }
