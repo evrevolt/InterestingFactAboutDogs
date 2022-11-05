@@ -11,7 +11,3 @@ struct FactAboutDogs: Decodable {
     let fact: String
 }
 
-struct Facts: Decodable {
-    let facts: [FactAboutDogs]
-    
-}
