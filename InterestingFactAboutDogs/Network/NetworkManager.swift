@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum NetworkError: Error {
     case invalidURL
@@ -17,37 +18,63 @@ enum Link: String {
     case url = "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all"
 }
 
+/*
+ class NetworkManager {
+ static let shared = NetworkManager()
+ 
+ func fetchFacts(url: String, complition: @escaping([String]) -> Void ) {
+ 
+ //Проверяем строку
+ guard let url = URL(string: url) else { return }
+ 
+ //Извлекаем данные (устанавливаем сессию)
+ URLSession.shared.dataTask(with: url) { data, _, error in
+ guard let data else {
+ print(error?.localizedDescription ?? "No error description")
+ return
+ }
+ 
+ //Декодируем
+ do {
+ let facts = try JSONDecoder().decode([FactAboutDogs].self, from: data)
+ //Передаем данные через complition
+ var strings = [String]()
+ for fact in facts {
+ strings.append(fact.fact)
+ }
+ 
+ complition(strings)
+ 
+ 
+ } catch {
+ print(error)
+ }
+ }.resume()
+ }
+ private init() {}
+ }
+ */
+
 class NetworkManager {
+    
     static let shared = NetworkManager()
     
-    func fetchFacts(url: String, complition: @escaping([String]) -> Void ) {
+    func fetchFacts(url: String, complition: @escaping(Result<[String], AFError>) -> Void) {
         
-        //Проверяем строку
-        guard let url = URL(string: url) else { return }
-        
-        //Извлекаем данные (устанавливаем сессию)
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            //Декодируем
-            do {
-                let facts = try JSONDecoder().decode([FactAboutDogs].self, from: data)
-                //Передаем данные через complition
-                var strings = [String]()
-                for fact in facts {
-                    strings.append(fact.fact)
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    let factOfDogs = FactAboutDogs.getFacts(from: value)
+                    complition(.success(factOfDogs))
+                    print(factOfDogs)
+                case .failure(let error):
+                    complition(.failure(error))
+                    print(error)
                 }
-                
-                complition(strings)
-                
-                
-            } catch {
-                print(error)
-            }
-        }.resume()
+            
+        }
+        
     }
-    private init() {}
 }
