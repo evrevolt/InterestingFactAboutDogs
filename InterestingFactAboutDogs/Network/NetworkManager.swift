@@ -67,14 +67,14 @@ class NetworkManager {
                 switch dataResponse.result {
                 case .success(let value):
                     let factOfDogs = FactAboutDogs.getFacts(from: value)
-                    complition(.success(factOfDogs))
-                    print(factOfDogs)
+                    DispatchQueue.main.async {
+                        complition(.success(factOfDogs))
+                        print(factOfDogs)
+                    }
                 case .failure(let error):
                     complition(.failure(error))
                     print(error)
                 }
-            
-        }
-        
+            }
     }
 }
